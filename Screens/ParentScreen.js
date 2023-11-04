@@ -1,14 +1,12 @@
-// Sample Parent Screen
-import React from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
-const ParentScreen = () => {
+export default function ParentScreen() {
   return (
     <View>
-      <Text>Parent Dashboard</Text>
-      {/* Add components for child's progress report, teacher contacts, and messaging */}
+      <Text>ParentScreen</Text>
     </View>
-  );
-};
+  )
+}
 
-export default ParentScreen;
+const styles = StyleSheet.create({})

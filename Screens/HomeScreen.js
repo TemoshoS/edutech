@@ -16,9 +16,19 @@ const HomeScreen = () => {
     navigation.navigate('Course', { id: courseId });
   };
 
+  const handleCourse= () => {
+    navigation.navigate('CourseList');
+  };
+
+  const handleChatbot = () => {
+    navigation.navigate('Chats'); 
+  };
+  
+
+
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Hi. </Text>
+      <Text style={styles.header}>Hi, user</Text>
       <Text style={styles.subHeader}>All subjects</Text>
       <FlatList
         data={courses}
@@ -30,6 +40,14 @@ const HomeScreen = () => {
           </TouchableOpacity>
         )}
       />
+      <View style={styles.chatbot}>
+      <TouchableOpacity onPress={handleCourse}>
+        <Text>Courses</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleChatbot}>
+        <Text>let chat</Text>
+      </TouchableOpacity>
+      </View>
     </View>
 
   );
@@ -64,6 +82,10 @@ const styles = StyleSheet.create({
     height: 200,
     marginBottom: 16,
   },
+  chatbot:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  }
 });
 
 export default HomeScreen;

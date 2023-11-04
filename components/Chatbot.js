@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet ,TouchableOpacity} from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
-
+  const handleCloseChatbot = () => {
+    
+  };
   // Your GPT-3 API key
   const apiKey = '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';
 

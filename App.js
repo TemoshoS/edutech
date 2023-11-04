@@ -24,7 +24,7 @@ const Tab = createBottomTabNavigator();
 
 function MainStack() {
   return (
-    <Stack.Navigator initialRouteName='Register'>
+    <Stack.Navigator initialRouteName='Login'>
       <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
       <Stack.Screen name='Register' component={RegisterScreen} options={{ headerShown: false }} />
       <Stack.Screen name='ProfileScreen' component={ProfileScreen} options={{ headerShown: false }} />
@@ -39,7 +39,7 @@ function MainStack() {
       <Stack.Screen name='Messaging' component={MessagingScreen} options={{ headerShown: false }} />
       <Stack.Screen name='Settings' component={SettingsScreen} options={{ headerShown: false }} />
       <Stack.Screen  name='Chats' component={Chatbot} options={{ headerShown: false }} />
-
+      
     </Stack.Navigator>
   );
 }

@@ -15,7 +15,7 @@ const CourseListScreen = () => {
 
   // Function to navigate to the individual course screen when a course is selected
   const navigateToCourse = (course) => {
-    navigation.navigate('CourseDetail', { course }); // 'CourseDetail' is the name of the screen for the individual course detail.
+    navigation.navigate('CouseDetails', { course }); // 'CourseDetail' is the name of the screen for the individual course detail.
   };
 
   return (

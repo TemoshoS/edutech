@@ -14,7 +14,7 @@ const LoginScreen = () => {
 };
 
   const handleLogin = () => {
-    
+    navigation.navigate('HomeScreen');
   };
 
   const handleRegisterNavigation = () => {
@@ -42,6 +42,11 @@ const LoginScreen = () => {
                 <Icon name={showPassword ? 'eye' : 'eye-slash'} size={20} color="gray" />
             </TouchableOpacity>
       <Button title="Login" onPress={handleLogin} />
+   
+   <TouchableOpacity onPress={handleRegisterNavigation}>
+    <Text>register</Text>
+   </TouchableOpacity>
+   
     </View>
   );
 };
