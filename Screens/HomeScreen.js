@@ -4,15 +4,17 @@ import { useNavigation } from '@react-navigation/native';
 import mathesImage from '../assets/maths.jpg';
 import physicalSciencesImage from '../assets/physics.jpg';
 import englishImage from '../assets/english.jpg';
+import sepedi from '../assets/sepedi.jpg';
+import backgroundImg from '../assets/edu.jpg';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
 
   const courses = [
-    { id: '1', title: 'Mathes', imageUrl: mathesImage },
+    { id: '1', title: 'Mathematics', imageUrl: mathesImage },
     { id: '2', title: 'Physical Sciences', imageUrl: physicalSciencesImage },
     { id: '3', title: 'English', imageUrl: englishImage },
-    // Add more courses as needed
+    { id: '4', title: 'Sepedi', imageUrl: sepedi },
   ];
 
   const handleCourseNavigation = (course) => {
@@ -28,78 +30,90 @@ const HomeScreen = () => {
   };
 
   return (
-    <ImageBackground source={require('../assets/light_gray_background.jpg')} style={styles.container}>
-      <Text style={styles.header}>Hi, user</Text>
-      <Text style={styles.subHeader}>All subjects</Text>
-      <FlatList
-        data={courses}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.courseItem} onPress={() => handleCourseNavigation(item.id)}>
-            <Image source={{ uri: item.imageUrl }} style={styles.courseImage} />
-            <Text style={styles.courseTitle}>{item.title}</Text>
+    <ImageBackground source={backgroundImg} style={styles.backgroundImage}>
+      <View style={styles.container}>
+        <Text style={styles.header}>Welcome, John Doe</Text>
+        <Text style={styles.subHeader}>Explore All Subjects</Text>
+        <FlatList
+          data={courses}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.courseItem} onPress={() => handleCourseNavigation(item.id)}>
+              <Image source={{ uri: item.imageUrl }} style={styles.courseImage} />
+              <Text style={styles.courseTitle}>{item.title}</Text>
+            </TouchableOpacity>
+          )}
+        />
+        <View style={styles.actions}>
+          <TouchableOpacity style={styles.actionButton} onPress={handleCourse}>
+            <Text style={styles.actionButtonText}>Study</Text>
           </TouchableOpacity>
-        )}
-      />
-      <View style={styles.chatbot}>
-        <TouchableOpacity style={styles.button} onPress={handleCourse}>
-          <Text style={styles.buttonText}>Courses</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleChatbot}>
-          <Text style={styles.buttonText}>Let's Chat</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.actionButton} onPress={handleChatbot}>
+            <Text style={styles.actionButtonText}>Let's Chat</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#f2f2f2', // Light grey background
   },
   header: {
-    fontSize: 24,
+    fontSize: 28,
     marginBottom: 16,
+    fontWeight: 'bold',
+    color: 'white', // Set the text color to white
   },
   subHeader: {
     fontSize: 20,
     marginBottom: 16,
+    color: 'white', // Set the text color to white
   },
   courseItem: {
+    flex: 1,
+    margin: 8,
     padding: 16,
-    marginBottom: 16,
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 8,
-    backgroundColor: 'white',
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
   },
   courseTitle: {
-    fontSize: 18,
+    fontSize: 16,
     marginTop: 8,
-    textAlign: 'center',
+    color: 'black', // Set the text color to black
   },
   courseImage: {
     width: '100%',
-    height: 200,
-    marginBottom: 16,
+    height: 150,
+    marginBottom: 8,
   },
-  chatbot: {
+  actions: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+    marginTop: 16,
   },
-  button: {
-    backgroundColor: '#007BFF',
+  actionButton: {
+    flex: 1,
+    backgroundColor: 'black',
     padding: 12,
+    margin: 8,
+    alignItems: 'center',
     borderRadius: 8,
+    borderBottomWidth: 1,
   },
-  buttonText: {
-    color: 'white',
+  actionButtonText: {
+    color: '#ccc',
     fontSize: 18,
   },
 });

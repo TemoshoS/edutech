@@ -7,8 +7,9 @@ import {
   FlatList,
   Modal,
   StyleSheet,
+  ImageBackground,
 } from 'react-native';
-
+import user from '../assets/edu.jpg';
 
 const MessagingScreen = () => {
   const [messages, setMessages] = useState([]); // To store message history
@@ -35,7 +36,7 @@ const MessagingScreen = () => {
     // In a real app, you'd upload the attachment to your server and handle it accordingly.
     const attachment = {
       type: 'image',
-      url: 'https://example.com/your-image.png',
+      url: user,
     };
     setAttachments([...attachments, attachment]);
     setAttachmentModalVisible(false);
@@ -54,12 +55,15 @@ const MessagingScreen = () => {
       sender: 'Teacher',
       timestamp: new Date().toLocaleTimeString(),
     };
-    setTimeout(() => setMessages([...messages, receivedMessage]), 2000);
+    setTimeout(() => setMessages([...messages, receivedMessage]), 10000);
   }, [messages]);
 
   return (
+    <ImageBackground source={user} style={styles.backgroundImage}>
     <View style={styles.container}>
-      <Text style={styles.title}>Messaging</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>Messaging</Text>
+      </View>
       <FlatList
         data={messages}
         keyExtractor={(item, index) => index.toString()}
@@ -111,18 +115,29 @@ const MessagingScreen = () => {
         </View>
       </Modal>
     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
   container: {
     flex: 1,
     padding: 16,
+    
+  },
+  header: {
+    backgroundColor: '#007bff',
+    padding: 16,
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 16,
+    color: 'white',
   },
   messageContainer: {
     borderWidth: 1,
@@ -145,9 +160,10 @@ const styles = StyleSheet.create({
   messageInput: {
     flex: 1,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: 'lightgray',
     padding: 8,
     borderRadius: 8,
+    color: 'gray',
   },
   attachmentModalContainer: {
     flex: 1,

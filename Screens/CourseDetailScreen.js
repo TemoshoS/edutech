@@ -1,72 +1,102 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView, ImageBackground  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const CourseDetailScreen = ({ route }) => {
   const navigation = useNavigation();
   const { course } = route.params;
 
-  // Mocked instructor and assignment information
   const instructor = "John Doe";
   const upcomingAssignments = ["Assignment 1", "Assignment 2"];
 
-  // State to track course enrollment status
   const [isEnrolled, setIsEnrolled] = useState(false);
 
-  // Function to toggle course enrollment status
   const toggleEnrollment = () => {
     setIsEnrolled(!isEnrolled);
   };
 
-  // Function to navigate to the course materials screen
   const navigateToMaterials = () => {
-    navigation.navigate('CourseMaterials', { course }); // 'CourseMaterials' is the name of the screen for course materials.
+    navigation.navigate('CourseMaterials', { course });
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{course.title}</Text>
-      <Text style={styles.instructor}>Instructor: {instructor}</Text>
-      <Text style={styles.subtitle}>Upcoming Assignments:</Text>
-      <View>
-        {upcomingAssignments.map((assignment, index) => (
-          <Text key={index} style={styles.assignment}>{assignment}</Text>
-        ))}
-      </View>
-      <Button
-        title={isEnrolled ? 'Drop Course' : 'Enroll in Course'}
-        onPress={toggleEnrollment}
-      />
-      <Button
-        title="Course Materials"
-        onPress={navigateToMaterials}
-      />
-    </View>
+    <ImageBackground source={require('../assets/edu.jpg')} style={styles.backgroundImage}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}>{course.title}</Text>
+        <Text style={styles.instructor}>Instructor: {instructor}</Text>
+        <Text style={styles.description}>
+          Schools are organized spaces purposed for teaching and learning. The classrooms where teachers teach and students learn are of central importance. 
+        </Text>
+        <Text style={styles.subtitle}>Upcoming Assignments:</Text>
+        <View>
+          {upcomingAssignments.map((assignment, index) => (
+            <Text key={index} style={styles.assignment}>{assignment}</Text>
+          ))}
+        </View>
+        <Text style={styles.status}>
+          Enrollment Status: {isEnrolled ? 'Enrolled' : 'Not Enrolled'}
+        </Text>
+        <View style={styles.buttonsContainer}>
+          <Button
+            title={isEnrolled ? 'Drop Course' : 'Enroll in Course'}
+            onPress={toggleEnrollment}
+            color={isEnrolled ? 'red' : 'green'} 
+          />
+          <Button
+            title="Study Materials"
+            onPress={navigateToMaterials}
+          />
+        </View>
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  backgroundImage: {
     flex: 1,
+    resizeMode: 'cover',
+  },
+  container: {
+    flexGrow: 1,
     padding: 16,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 16,
+    color: 'white', // Updated title color
   },
   instructor: {
+    fontSize: 18,
+    marginBottom: 12,
+    color: 'lightgray', // Updated instructor info color
+  },
+  description: {
     fontSize: 16,
-    marginBottom: 8,
+    marginBottom: 20,
+    color: 'lightgray', // Updated description text color
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginTop: 16,
+    marginTop: 20,
+    color: 'white', // Updated subtitle color
   },
   assignment: {
-    fontSize: 14,
-    marginBottom: 8,
+    fontSize: 16,
+    marginBottom: 12,
+    color: 'lightgray', // Updated assignment text color
+  },
+  status: {
+    fontSize: 18,
+    marginTop: 20,
+    color: 'green',
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
   },
 });
 

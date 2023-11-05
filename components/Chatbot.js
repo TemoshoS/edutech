@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet ,TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet ,TouchableOpacity, ImageBackground} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import user from '../assets/edu.jpg';
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -48,6 +49,7 @@ try {
   
 
   return (
+    <ImageBackground source={user} style={styles.backgroundImage}>
     <View style={styles.container}>
       <Text style={styles.title}>Chatbot</Text>
       <View style={styles.chatContainer}>
@@ -71,10 +73,15 @@ try {
       />
       <Button title="Send" onPress={handleSendMessage} />
     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
   container: {
     flex: 1,
     padding: 16,
