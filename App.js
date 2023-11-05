@@ -17,7 +17,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import HomeScreen from './Screens/HomeScreen';
 import TeacherMainScreen from './Screens/TeacherMainScreen';
 import CourseListScreen from './Screens/CourseListScreen';
-
+import Dashboard from './Screens/Dashboard';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,13 +25,14 @@ const Tab = createBottomTabNavigator();
 function MainStack() {
   return (
     <Stack.Navigator initialRouteName='Login'>
+      <Stack.Screen name='dash' component={Dashboard} options={{ headerShown: false }} />
       <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
       <Stack.Screen name='Register' component={RegisterScreen} options={{ headerShown: false }} />
       <Stack.Screen name='ProfileScreen' component={ProfileScreen} options={{ headerShown: false }} />
       <Stack.Screen name='HomeScreen' component={HomeScreen} options={{ headerShown: false }} />
       <Stack.Screen name='TeacherMainScreen' component={TeacherMainScreen} options={{ headerShown: false }} />
       <Stack.Screen name='Assign' component={AssignmentScreen} options={{ headerShown: false }} />
-      <Stack.Screen name='CouseDetails' component={CourseDetailScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="CourseDetails" component={CourseDetailScreen} options={{ headerShown: false }} />
       <Stack.Screen name='CourseList' component={CourseListScreen} options={{ headerShown: false }} />
       <Stack.Screen name='CourseMaterials' component={CourseMaterialsScreen} options={{ headerShown: false }} />
       <Stack.Screen name='Learner' component={LearnerScreen} options={{ headerShown: false }} />
@@ -70,6 +71,20 @@ function TabNavigator() {
       }}
       />
      
+
+     <Tab.Screen 
+      name="message" 
+      component={MessagingScreen} 
+      options={{
+        headerShown: false,
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons
+            name="message"
+            color={color}
+            size={size}
+          />
+        ),
+      }}/>
     
 <Tab.Screen 
       name="profile" 
@@ -92,7 +107,7 @@ function TabNavigator() {
         headerShown: false,
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons
-            name="settings"
+            name="cog"
             color={color}
             size={size}
           />

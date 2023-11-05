@@ -12,8 +12,13 @@ const SettingsScreen = ({ navigation }) => {
     navigation.navigate('Login');
   };
 
+  const containerStyle = {
+    ...styles.container,
+    backgroundColor: isDarkMode ? 'gray' : 'white', // Change background color based on dark mode
+  };
+
   return (
-    <View style={styles.container}>
+    <View style={containerStyle}>
       <Text style={styles.title}>Settings</Text>
       <Text style={styles.subtitle}>Theme</Text>
       <View style={styles.settingItem}>
@@ -63,11 +68,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
     marginBottom: 16,
   },
 });

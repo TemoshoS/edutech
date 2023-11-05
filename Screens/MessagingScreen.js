@@ -9,6 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
+
 const MessagingScreen = () => {
   const [messages, setMessages] = useState([]); // To store message history
   const [newMessage, setNewMessage] = useState(''); // To compose a new message
